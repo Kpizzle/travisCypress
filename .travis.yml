@@ -20,3 +20,6 @@ script:
 
 notifications:
   slack: kpdevhouse:LaFsABpD5hTZfZFnwUEUFTCf#testing
+    template:
+      - "%{repository_slug} : %{message}"
+      - "Build details: %{build_url}"
