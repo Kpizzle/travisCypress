@@ -1,3 +1,11 @@
 FROM cypress/base
+
+WORKDIR /app
+
+COPY ./package.json ./package.json
+
 RUN npm install
-RUN $(npm bin)/cypress run
+
+COPY . .
+
+CMD [ "npm", "run", "start:ci" ]
