@@ -1,19 +1,12 @@
-language: node_js
-node_js:
-  - 10
-addons:
-  apt:
-    packages:
-      # Ubuntu 16+ does not install this dependency by default, so we need to install it ourselves
-      - libgconf-2-4
-cache:
-  # Caches $HOME/.npm when npm ci is default script command
-  # Caches node_modules in all other cases
-  npm: true
-  directories:
-    # we also need to cache folder with Cypress binary
-    - ~/.cache
-install:
-  - npm ci
+sudo: required
+services: -docker
+
+before_install:
+  - docker build  -t kpizzle/cypresstest .
+
 script:
-  - npm run start:ci
+  # '-e ci=true' is env var so that tests exit and travis doesn't hang
+  - docker run kpizzle/cypresstest
+
+notifications:
+  slack: kpdevhouse:LaFsABpD5hTZfZFnwUEUFTCf
