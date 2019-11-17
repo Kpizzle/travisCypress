@@ -17,3 +17,6 @@ install:
   - npm ci
 script:
   - npm run start:ci
+
+notifications:
+  slack: kpdevhouse:LaFsABpD5hTZfZFnwUEUFTCf#testing
